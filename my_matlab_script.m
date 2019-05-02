@@ -7,3 +7,5 @@ for i=1:12345678
 end
 
 disp(x);
+
+save output/workspace.mat

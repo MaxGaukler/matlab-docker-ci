@@ -1,0 +1,21 @@
+# Settings for Gitlab CI. See: https://docs.gitlab.com/ce/ci/yaml/README.html
+
+# This requires a Gitlab CI shell runner with MATLAB and docker installed. The gitlab-ci user must be in the 'docker' group (which is roughly, but not exactly, equivalent to sudo permissions)
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+build:2015a:
+    variables:
+        MATLABRELEASE: R2015a
+    script: ./run.sh
+
+build:2017b:
+    variables:
+        MATLABRELEASE: R2017b
+    script: ./run.sh
+    
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - output/
