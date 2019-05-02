@@ -17,4 +17,4 @@ mkdir -p ./output
 # TODO FIXME: to work around permission issues, we make the output directory world-writable. That's a bad idea if you are using a shared computer -- then, please ensure that ./ is not accessible to others (permission 700).
 chmod 777 ./output
 docker build . -t localhost/matlab
-docker run -v "$MATLABPATH:/usr/local/matlab/" -e "LM_PROJECT=$LM_PROJECT" -v "$(pwd)/output:/myscript/output/" localhost/matlab
+docker run -v "$MATLABPATH:/usr/local/matlab/:ro" -e "LM_PROJECT=$LM_PROJECT" -v "$(pwd)/output:/myscript/output/" localhost/matlab
