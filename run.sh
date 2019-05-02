@@ -14,5 +14,7 @@ test -x $MATLABPATH/bin/matlab || { echo "Cannot find matlab in $MATLABPATH, ple
 # Build and run container
 rm -rf ./output/
 mkdir -p ./output
+# TODO FIXME: to work around permission issues, we make the output directory world-writable. That's a bad idea if you are using a shared computer -- then, please ensure that ./ is not accessible to others (permission 700).
+chmod 777 ./output
 docker build . -t localhost/matlab
 docker run -v "$MATLABPATH:/usr/local/matlab/" -e "LM_PROJECT=$LM_PROJECT" -v "$(pwd)/output:/myscript/output/" localhost/matlab
